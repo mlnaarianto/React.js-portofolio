@@ -1,0 +1,128 @@
+/* ==================== NAVBAR STYLES ==================== */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 15px 0;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  background: var(--nav-bg);
+}
+
+.scrolled {
+  padding: 10px 0;
+  background: var(--nav-scrolled-bg);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.navLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.navLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: var(--transition);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.navLink:hover,
+.active {
+  color: var(--text-color);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: var(--transition);
+}
+
+.active::after,
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navIcons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navIcons a {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+/* Theme Switch Styles */
+.themeSwitch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.activeTheme {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.switch {
+  width: 42px;
+  height: 22px;
+  background: var(--border-color);
+  border-radius: 999px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.knob {
+  width: 18px;
+  height: 18px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: var(--transition);
+}
+
+.switchOn {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.switchOn .knob {
+  left: 22px;
+}

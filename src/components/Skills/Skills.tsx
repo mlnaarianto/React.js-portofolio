@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState, useEffect } from 'react'
+import styles from './Skills.module.css'
 
 const skills = [
   { name: 'React', level: 90, color: '#61DAFB' },
@@ -51,12 +52,12 @@ export default function Skills() {
     <motion.section
       ref={ref}
       id="skills"
-      className="section skills-section"
+      className={`${styles.section} skills-section`}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
     >
-      <div className="section-header">
+      <div className={styles.sectionHeader}>
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -66,31 +67,31 @@ export default function Skills() {
         </motion.h2>
         
         <motion.div 
-          className="underline"
+          className={styles.underline}
           initial={{ width: 0 }}
           animate={inView ? { width: '80px' } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         />
       </div>
       
-      <div className="skills-container">
-        <div className="skills-grid">
+      <div className={styles.skillsContainer}>
+        <div className={styles.skillsGrid}>
           {skills.map((skill, index) => (
             <motion.div 
               key={skill.name}
-              className="skill-card"
+              className={styles.skillCard}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
               whileHover={{ y: -5, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
             >
-              <div className="skill-header">
+              <div className={styles.skillHeader}>
                 <h3>{skill.name}</h3>
                 <span>{animatedLevels[index]}%</span>
               </div>
-              <div className="skill-bar-container">
+              <div className={styles.skillBarContainer}>
                 <motion.div 
-                  className="skill-bar"
+                  className={styles.skillBar}
                   style={{ backgroundColor: skill.color }}
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${animatedLevels[index]}%` } : {}}

@@ -1,50 +1,69 @@
 import { useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+
+import Navbar from './components/Navbar/Navbar'
+import Hero from './components/Hero/Hero'
+import About from './components/About/About'
+import Skills from './components/Skills/Skills'
+import Projects from './components/Projects/Projects'
+import Blog from './components/Blog/Blog'
+import BlogDetail from './components/Blog/BlogDetail'
+import Footer from './components/Footer/Footer'
 
 export default function App() {
-  useEffect(() => {
-    // Check for saved theme preference or default to 'dark'
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme)
-    } else {
-      // Default to dark theme
-      document.documentElement.setAttribute('data-theme', 'dark')
-    }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault()
-        const target = document.querySelector(this.getAttribute('href') as string)
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          })
-        }
-      })
-    })
+useEffect(() => {
+  const savedTheme = localStorage.getItem('theme')
+  document.documentElement.setAttribute('data-theme', savedTheme ?? 'dark')
 
-    return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', () => {})
-      })
+  const handleAnchorClick = (e: Event) => {
+    const target = e.currentTarget as HTMLAnchorElement
+    const href = target.getAttribute('href')
+
+    // Abaikan routing HashRouter
+    if (!href || href.startsWith('#/')) return
+
+    e.preventDefault()
+
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      const el = document.querySelector(href)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
-  }, [])
+  }
+
+  const anchors = document.querySelectorAll('a[href^="#"]:not([href^="#/"])')
+  anchors.forEach(anchor => anchor.addEventListener('click', handleAnchorClick))
+
+  return () => {
+    anchors.forEach(anchor => anchor.removeEventListener('click', handleAnchorClick))
+  }
+}, [])
+
 
   return (
     <>
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Blog />
+            </>
+          }
+        />
+
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+      </Routes>
+
       <Footer />
     </>
   )

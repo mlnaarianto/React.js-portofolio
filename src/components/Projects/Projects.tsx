@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import styles from './Projects.module.css'
 
 const projects = [
   {
@@ -50,12 +51,12 @@ export default function Projects() {
     <motion.section
       ref={ref}
       id="projects"
-      className="section projects-section"
+      className={`${styles.section} projects-section`}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
     >
-      <div className="section-header">
+      <div className={styles.sectionHeader}>
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -65,7 +66,7 @@ export default function Projects() {
         </motion.h2>
         
         <motion.div 
-          className="underline"
+          className={styles.underline}
           initial={{ width: 0 }}
           animate={inView ? { width: '80px' } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -73,7 +74,7 @@ export default function Projects() {
       </div>
       
       <motion.div 
-        className="filter-buttons"
+        className={styles.filterButtons}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.3 }}
@@ -81,7 +82,7 @@ export default function Projects() {
         {['all', 'react', 'node', 'python'].map((f) => (
           <motion.button
             key={f}
-            className={`filter-btn ${filter === f ? 'active' : ''}`}
+            className={`${styles.filterBtn} ${filter === f ? styles.active : ''}`}
             onClick={() => setFilter(f)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -91,20 +92,20 @@ export default function Projects() {
         ))}
       </motion.div>
       
-      <div className="projects-grid">
+      <div className={styles.projectsGrid}>
         {filteredProjects.map((project, index) => (
           <motion.div
             key={project.title}
-            className="project-card"
+            className={styles.projectCard}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 * index }}
             whileHover={{ y: -10 }}
           >
-            <div className="project-image">
+            <div className={styles.projectImage}>
               <img src={project.image} alt={project.title} />
-              <div className="project-overlay">
-                <div className="project-links">
+              <div className={styles.projectOverlay}>
+                <div className={styles.projectLinks}>
                   <motion.a 
                     href={project.github} 
                     target="_blank" 
@@ -127,13 +128,13 @@ export default function Projects() {
               </div>
             </div>
             
-            <div className="project-content">
+            <div className={styles.projectContent}>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
               
-              <div className="project-tags">
+              <div className={styles.projectTags}>
                 {project.tags.map((tag) => (
-                  <span key={tag} className="tag">{tag}</span>
+                  <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
               </div>
             </div>

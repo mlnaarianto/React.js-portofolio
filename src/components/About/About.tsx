@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState, useEffect } from 'react'
+import styles from './About.module.css'
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })
@@ -42,12 +43,12 @@ export default function About() {
     <motion.section
       ref={ref}
       id="about"
-      className="section about-section"
+      className={`${styles.section} about-section`}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
     >
-      <div className="section-header">
+      <div className={styles.sectionHeader}>
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -57,16 +58,16 @@ export default function About() {
         </motion.h2>
         
         <motion.div 
-          className="underline"
+          className={styles.underline}
           initial={{ width: 0 }}
           animate={inView ? { width: '80px' } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         />
       </div>
       
-      <div className="about-content">
+      <div className={styles.aboutContent}>
         <motion.div 
-          className="about-text"
+          className={styles.aboutText}
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -83,20 +84,20 @@ export default function About() {
         </motion.div>
         
         <motion.div 
-          className="about-stats"
+          className={styles.aboutStats}
           initial={{ opacity: 0, x: 30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="stat-card">
+          <div className={styles.statCard}>
             <h3>{experience}+</h3>
             <p>Years Experience</p>
           </div>
-          <div className="stat-card">
+          <div className={styles.statCard}>
             <h3>20+</h3>
             <p>Projects Completed</p>
           </div>
-          <div className="stat-card">
+          <div className={styles.statCard}>
             <h3>100%</h3>
             <p>Client Satisfaction</p>
           </div>
