@@ -1,13 +1,72 @@
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram
+} from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 import styles from './Footer.module.css'
 
 export default function Footer() {
+  // ✅ TypeScript-safe ref
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const [loading, setLoading] = useState(false)
+
   const currentYear = new Date().getFullYear()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+
+    /* 1️⃣ HONEYPOT CHECK (ANTI BOT) */
+    const botField = form.elements.namedItem('botcheck') as HTMLInputElement
+    if (botField?.value) {
+      console.warn('Spam detected (honeypot)')
+      return
+    }
+
+    /* 2️⃣ RATE LIMIT (1 EMAIL / 60 DETIK) */
+    const lastSend = localStorage.getItem('lastEmailTime')
+    const now = Date.now()
+
+    if (lastSend && now - Number(lastSend) < 60000) {
+      alert('Please wait a minute before sending another message.')
+      return
+    }
+
+    setLoading(true)
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current!,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        alert('Message sent successfully!')
+        localStorage.setItem('lastEmailTime', now.toString())
+        form.reset()
+      })
+      .catch((error) => {
+        console.error(error)
+        alert('Failed to send message. Please try again later.')
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
 
   return (
     <footer id="contact" className={styles.footer}>
       <div className={styles.footerContent}>
+        {/* LEFT */}
         <motion.div
           className={styles.footerInfo}
           initial={{ opacity: 0, y: 20 }}
@@ -16,9 +75,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h2>Get In Touch</h2>
-          <p>
-            Feel free to reach out to me for any questions or opportunities.
-          </p>
+          <p>Feel free to reach out to me for any questions or opportunities.</p>
 
           <div className={styles.contactInfo}>
             <div className={styles.contactItem}>
@@ -31,11 +88,12 @@ export default function Footer() {
             </div>
             <div className={styles.contactItem}>
               <FaMapMarkerAlt />
-              <span>Batam City, Riau Island Province, Indonesia</span>
+              <span>Batam City, Indonesia</span>
             </div>
           </div>
         </motion.div>
 
+        {/* RIGHT */}
         <motion.div
           className={styles.footerForm}
           initial={{ opacity: 0, y: 20 }}
@@ -43,28 +101,57 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <form>
+          <form ref={formRef} onSubmit={handleSubmit}>
+            {/* HONEYPOT (HIDDEN FIELD) */}
+            <input
+              type="text"
+              name="botcheck"
+              style={{ display: 'none' }}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
             <div className={styles.formGroup}>
-              <input type="text" placeholder="Your Name" required />
+              <input
+                type="text"
+                name="from_name"
+                placeholder="Your Name"
+                required
+              />
             </div>
+
             <div className={styles.formGroup}>
-              <input type="email" placeholder="Your Email" required />
+              <input
+                type="email"
+                name="reply_to"
+                placeholder="Your Email"
+                required
+              />
             </div>
+
             <div className={styles.formGroup}>
-              <textarea placeholder="Your Message" rows={5} required></textarea>
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows={5}
+                required
+              />
             </div>
+
             <motion.button
               type="submit"
               className={styles.primaryBtn}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              disabled={loading}
+              whileHover={!loading ? { scale: 1.05 } : {}}
+              whileTap={!loading ? { scale: 0.95 } : {}}
             >
-              Send Message
+              {loading ? 'Sending...' : 'Send Message'}
             </motion.button>
           </form>
         </motion.div>
       </div>
 
+      {/* BOTTOM */}
       <motion.div
         className={styles.footerBottom}
         initial={{ opacity: 0 }}
@@ -73,33 +160,30 @@ export default function Footer() {
         viewport={{ once: true }}
       >
         <div className={styles.socialLinks}>
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -3 }}
-            whileTap={{ y: 0 }}
-          >
+          <a href="https://github.com/mlnaarianto" target="_blank" rel="noreferrer">
             <FaGithub />
-          </motion.a>
-          <motion.a
-            href="https://linkedin.com"
+          </a>
+          <a
+            href="https://www.linkedin.com/in/maulana-arianto-4a32a8370/"
             target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -3 }}
-            whileTap={{ y: 0 }}
+            rel="noreferrer"
           >
             <FaLinkedin />
-          </motion.a>
-          <motion.a
-            href="https://twitter.com"
+          </a>
+          <a
+            href="https://www.instagram.com/_mlna.arianto/"
             target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -3 }}
-            whileTap={{ y: 0 }}
+            rel="noreferrer"
           >
-            <FaTwitter />
-          </motion.a>
+            <FaInstagram />
+          </a>
+          <a
+            href="https://x.com/MaulanaArianto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaXTwitter />
+          </a>
         </div>
 
         <p>© {currentYear} Maulana Arianto. All rights reserved.</p>
