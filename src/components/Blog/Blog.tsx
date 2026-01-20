@@ -125,8 +125,9 @@ export default function Blog() {
         {categories.map(category => (
           <motion.button
             key={category}
-            className={`${styles.filterBtn} ${filter === category ? styles.active : ''
-              }`}
+            className={`${styles.filterBtn} ${
+              filter === category ? styles.active : ''
+            }`}
             onClick={() => setFilter(category)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

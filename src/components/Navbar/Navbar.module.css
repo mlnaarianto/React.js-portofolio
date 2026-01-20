@@ -126,3 +126,65 @@
 .switchOn .knob {
   left: 22px;
 }
+
+/* ================= MOBILE ================= */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: 220px;
+    background: var(--nav-bg);
+    border-radius: 14px;
+    padding: 14px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  .mobileOpen {
+    display: flex;
+    animation: fadeDown 0.25s ease;
+  }
+
+  .navIcons {
+    display: none;
+  }
+
+  .mobileTheme {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
