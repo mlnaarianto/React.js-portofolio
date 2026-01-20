@@ -126,7 +126,8 @@ h1 {
   color: var(--text-color);
 }
 
-.content ul, .content ol {
+.content ul,
+.content ol {
   margin-bottom: 20px;
   padding-left: 30px;
 }
@@ -190,7 +191,8 @@ h1 {
   margin: 20px 0;
 }
 
-.content th, .content td {
+.content th,
+.content td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
@@ -206,24 +208,24 @@ h1 {
   .detailSection {
     padding: 100px 20px 40px;
   }
-  
+
   .meta {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .heroImage {
     max-height: 250px;
   }
-  
+
   .content {
     font-size: 1rem;
   }
-  
+
   .content h2 {
     font-size: 1.6rem;
   }
-  
+
   .content h3 {
     font-size: 1.3rem;
   }
@@ -233,15 +235,15 @@ h1 {
   .detailSection {
     padding: 80px 15px 30px;
   }
-  
+
   .notFound h2 {
     font-size: 1.5rem;
   }
-  
+
   h1 {
     font-size: 1.8rem;
   }
-  
+
   .heroImage {
     max-height: 200px;
   }
