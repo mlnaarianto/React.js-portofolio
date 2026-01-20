@@ -7,7 +7,7 @@ const SECTIONS = ['home', 'about', 'skills', 'projects', 'blog']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState<string>('')
+  const [active, setActive] = useState<string>('home')
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -18,14 +18,13 @@ export default function Navbar() {
   const navigate = useNavigate()
 
   const isBlogDetail = location.pathname.startsWith('/blog/')
-  const blogDetailPath = isBlogDetail ? location.pathname : null
 
-  // ================= THEME =================
+  /* ================= THEME ================= */
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null
-    const currentTheme = savedTheme ?? 'dark'
-    setTheme(currentTheme)
-    document.documentElement.setAttribute('data-theme', currentTheme)
+    const saved = localStorage.getItem('theme') as 'dark' | 'light' | null
+    const current = saved ?? 'dark'
+    setTheme(current)
+    document.documentElement.setAttribute('data-theme', current)
   }, [])
 
   const toggleTheme = () => {
@@ -35,10 +34,10 @@ export default function Navbar() {
     document.documentElement.setAttribute('data-theme', next)
   }
 
-  // ================= ACTIVE STATE =================
+  /* ================= ACTIVE STATE ================= */
   useEffect(() => {
     if (isBlogDetail) {
-      setActive('blog-detail')
+      setActive('blog')
       return
     }
 
@@ -47,12 +46,12 @@ export default function Navbar() {
       return
     }
 
-    if (location.pathname === '/' && window.scrollY < 100) {
+    if (location.pathname === '/') {
       setActive('home')
     }
   }, [location.pathname, isBlogDetail])
 
-  // ================= SCROLL + OBSERVER =================
+  /* ================= SCROLL + OBSERVER ================= */
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', handleScroll)
@@ -64,11 +63,12 @@ export default function Navbar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          setActive(entry.target.id)
+          if (entry.isIntersecting) {
+            setActive(entry.target.id)
+          }
         })
       },
-      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+      { rootMargin: '-50% 0px -50% 0px' }
     )
 
     SECTIONS.forEach((id) => {
@@ -82,7 +82,7 @@ export default function Navbar() {
     }
   }, [location.pathname])
 
-  // ================= CLICK OUTSIDE (MOBILE) =================
+  /* ================= CLICK OUTSIDE (MOBILE) ================= */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -95,17 +95,23 @@ export default function Navbar() {
       }
     }
 
-    if (menuOpen) document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () =>
+      document.removeEventListener('mousedown', handleClickOutside)
   }, [menuOpen])
 
-  // ================= NAV CLICK =================
+  /* ================= NAV CLICK ================= */
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
 
-    const yOffset = -80
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
+    const offset = -80
+    const y =
+      el.getBoundingClientRect().top + window.pageYOffset + offset
+
     window.scrollTo({ top: y, behavior: 'smooth' })
   }
 
@@ -134,7 +140,7 @@ export default function Navbar() {
     >
       <div className={styles.navContainer}>
         {/* LOGO */}
-        <motion.h2
+        <h2
           className={styles.logo}
           onClick={() =>
             isBlogDetail
@@ -143,7 +149,7 @@ export default function Navbar() {
           }
         >
           Maulana Arianto
-        </motion.h2>
+        </h2>
 
         {/* HAMBURGER */}
         <button
@@ -156,7 +162,7 @@ export default function Navbar() {
           <span />
         </button>
 
-        {/* NAV LINKS */}
+        {/* NAV LINKS + THEME */}
         <div
           ref={menuRef}
           className={`${styles.navLinks} ${
@@ -175,14 +181,8 @@ export default function Navbar() {
             </button>
           ))}
 
-          {isBlogDetail && blogDetailPath && (
-            <button className={`${styles.navLink} ${styles.active}`}>
-              Blog Detail
-            </button>
-          )}
-
-          {/* THEME (MOBILE) */}
-          <div className={styles.mobileTheme}>
+          {/* SINGLE THEME SWITCH */}
+          <div className={styles.themeWrapper}>
             <div className={styles.themeSwitch} onClick={toggleTheme}>
               <span className={theme === 'light' ? styles.activeTheme : ''}>
                 Light
@@ -198,25 +198,6 @@ export default function Navbar() {
                 Dark
               </span>
             </div>
-          </div>
-        </div>
-
-        {/* THEME DESKTOP */}
-        <div className={styles.navIcons}>
-          <div className={styles.themeSwitch} onClick={toggleTheme}>
-            <span className={theme === 'light' ? styles.activeTheme : ''}>
-              Light
-            </span>
-            <div
-              className={`${styles.switch} ${
-                theme === 'dark' ? styles.switchOn : ''
-              }`}
-            >
-              <div className={styles.knob} />
-            </div>
-            <span className={theme === 'dark' ? styles.activeTheme : ''}>
-              Dark
-            </span>
           </div>
         </div>
       </div>

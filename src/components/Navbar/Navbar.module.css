@@ -25,6 +25,7 @@
   align-items: center;
 }
 
+/* ================= LOGO ================= */
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
@@ -32,14 +33,15 @@
   cursor: pointer;
 }
 
+/* ================= NAV LINKS ================= */
 .navLinks {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .navLink {
   color: var(--text-secondary);
-  text-decoration: none;
   font-weight: 500;
   position: relative;
   transition: var(--transition);
@@ -71,19 +73,11 @@
   width: 100%;
 }
 
-.navIcons {
-  display: flex;
-  gap: 15px;
-  align-items: center;
+/* ================= THEME SWITCH ================= */
+.themeWrapper {
+  margin-left: 20px;
 }
 
-.navIcons a {
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-  transition: var(--transition);
-}
-
-/* Theme Switch Styles */
 .themeSwitch {
   display: flex;
   align-items: center;
@@ -127,7 +121,7 @@
   left: 22px;
 }
 
-/* ================= MOBILE ================= */
+/* ================= HAMBURGER ================= */
 .hamburger {
   display: none;
   background: none;
@@ -143,6 +137,7 @@
   background: var(--text-color);
 }
 
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -159,7 +154,7 @@
     display: none;
     flex-direction: column;
     gap: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 
   .mobileOpen {
@@ -167,17 +162,15 @@
     animation: fadeDown 0.25s ease;
   }
 
-  .navIcons {
-    display: none;
-  }
-
-  .mobileTheme {
+  .themeWrapper {
+    margin-left: 0;
     margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
   }
 }
 
+/* ================= ANIMATION ================= */
 @keyframes fadeDown {
   from {
     opacity: 0;
