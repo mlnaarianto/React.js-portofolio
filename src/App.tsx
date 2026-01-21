@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import About from './components/About/About'
 import Skills from './components/Skills/Skills'
+import Experience from './components/Experience/Experience'
 import Projects from './components/Projects/Projects'
 import Blog from './components/Blog/Blog'
 import BlogDetail from './components/Blog/BlogDetail'
@@ -33,11 +34,15 @@ export default function App() {
       }
     }
 
-    const anchors = document.querySelectorAll('a[href^="#"]:not([href^="#/"])')
+    const anchors = document.querySelectorAll(
+      'a[href^="#"]:not([href^="#/"])'
+    )
     anchors.forEach(a => a.addEventListener('click', handleAnchorClick))
 
     return () => {
-      anchors.forEach(a => a.removeEventListener('click', handleAnchorClick))
+      anchors.forEach(a =>
+        a.removeEventListener('click', handleAnchorClick)
+      )
     }
   }, [])
 
@@ -70,6 +75,7 @@ export default function App() {
               <Hero />
               <About />
               <Skills />
+              <Experience />
               <Projects />
               <Blog />
             </>

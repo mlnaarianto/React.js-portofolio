@@ -7,13 +7,13 @@ import {
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
-  FaInstagram
+  FaInstagram,
+  FaFacebook
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import styles from './Footer.module.css'
 
 export default function Footer() {
-  // ✅ TypeScript-safe ref
   const formRef = useRef<HTMLFormElement | null>(null)
   const [loading, setLoading] = useState(false)
 
@@ -24,7 +24,7 @@ export default function Footer() {
 
     const form = e.currentTarget
 
-    /* 1️⃣ HONEYPOT CHECK (ANTI BOT) */
+    /* 1️⃣ HONEYPOT CHECK */
     const botField = form.elements.namedItem('botcheck') as HTMLInputElement
     if (botField?.value) {
       console.warn('Spam detected (honeypot)')
@@ -82,10 +82,12 @@ export default function Footer() {
               <FaEnvelope />
               <span>maulanaarianto321@gmail.com</span>
             </div>
+
             <div className={styles.contactItem}>
               <FaPhone />
-              <span>+62 812-3456-7890</span>
+              <span>+62 xxxxxxxxxx</span>
             </div>
+
             <div className={styles.contactItem}>
               <FaMapMarkerAlt />
               <span>Batam City, Indonesia</span>
@@ -102,7 +104,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <form ref={formRef} onSubmit={handleSubmit}>
-            {/* HONEYPOT (HIDDEN FIELD) */}
+            {/* HONEYPOT */}
             <input
               type="text"
               name="botcheck"
@@ -163,6 +165,7 @@ export default function Footer() {
           <a href="https://github.com/mlnaarianto" target="_blank" rel="noreferrer">
             <FaGithub />
           </a>
+
           <a
             href="https://www.linkedin.com/in/maulana-arianto-4a32a8370/"
             target="_blank"
@@ -170,6 +173,7 @@ export default function Footer() {
           >
             <FaLinkedin />
           </a>
+
           <a
             href="https://www.instagram.com/_mlna.arianto/"
             target="_blank"
@@ -177,6 +181,16 @@ export default function Footer() {
           >
             <FaInstagram />
           </a>
+
+          {/* FACEBOOK */}
+          <a
+            href="https://www.facebook.com/mlna.arianto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaFacebook />
+          </a>
+
           <a
             href="https://x.com/MaulanaArianto"
             target="_blank"

@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
 
-const SECTIONS = ['home', 'about', 'skills', 'projects', 'blog']
+const SECTIONS = ['home', 'about', 'skills', 'experience', 'projects', 'blog']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState<string>('home')
+  const [active, setActive] = useState<string | null>('home')
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -17,7 +17,10 @@ export default function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const isBlogDetail = location.pathname.startsWith('/blog/')
+  // 🔒 DETEKSI SLUG BLOG DETAIL (KHUSUS /blog/:slug)
+  const isBlogDetail =
+    location.pathname.startsWith('/blog/') &&
+    location.pathname.split('/').length === 3
 
   /* ================= THEME ================= */
   useEffect(() => {
@@ -37,19 +40,15 @@ export default function Navbar() {
   /* ================= ACTIVE STATE ================= */
   useEffect(() => {
     if (isBlogDetail) {
-      setActive('blog')
-      return
-    }
-
-    if (location.pathname === '/blog') {
-      setActive('blog')
+      setActive(null) // 🔥 MATIKAN SEMUA GARIS BAWAH
       return
     }
 
     if (location.pathname === '/') {
-      setActive('home')
+      setActive(localStorage.getItem('last-section') ?? 'home')
     }
   }, [location.pathname, isBlogDetail])
+
 
   /* ================= SCROLL + OBSERVER ================= */
   useEffect(() => {
@@ -64,7 +63,9 @@ export default function Navbar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActive(entry.target.id)
+            const id = entry.target.id
+            setActive(id)
+            localStorage.setItem('last-section', id)
           }
         })
       },
@@ -109,15 +110,15 @@ export default function Navbar() {
     if (!el) return
 
     const offset = -80
-    const y =
-      el.getBoundingClientRect().top + window.pageYOffset + offset
-
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset
     window.scrollTo({ top: y, behavior: 'smooth' })
   }
 
   const handleNavClick = (section: string) => {
     setMenuOpen(false)
+    localStorage.setItem('last-section', section)
 
+    // 🔥 JIKA DI BLOG DETAIL → SEMUA MENU PAKAI -1
     if (isBlogDetail) {
       navigate(-1)
       return
@@ -130,6 +131,7 @@ export default function Navbar() {
 
     navigate('/')
   }
+
 
   return (
     <motion.nav
@@ -162,35 +164,43 @@ export default function Navbar() {
           <span />
         </button>
 
-        {/* NAV LINKS + THEME */}
+        {/* NAV LINKS */}
         <div
           ref={menuRef}
-          className={`${styles.navLinks} ${
-            menuOpen ? styles.mobileOpen : ''
-          }`}
+          className={`${styles.navLinks} ${menuOpen ? styles.mobileOpen : ''
+            }`}
         >
+          {/* SECTION MENU */}
           {SECTIONS.map((section) => (
             <button
               key={section}
-              className={`${styles.navLink} ${
-                active === section ? styles.active : ''
-              }`}
+              className={`${styles.navLink} ${active === section ? styles.active : ''
+                }`}
               onClick={() => handleNavClick(section)}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </button>
           ))}
 
-          {/* SINGLE THEME SWITCH */}
+          {/* BLOG DETAIL — KHUSUS SLUG AKTIF */}
+          {isBlogDetail && (
+            <button
+              className={`${styles.navLink} ${styles.active}`}
+              onClick={() => navigate(-1)}
+            >
+              Blog Detail
+            </button>
+          )}
+
+          {/* THEME SWITCH */}
           <div className={styles.themeWrapper}>
             <div className={styles.themeSwitch} onClick={toggleTheme}>
               <span className={theme === 'light' ? styles.activeTheme : ''}>
                 Light
               </span>
               <div
-                className={`${styles.switch} ${
-                  theme === 'dark' ? styles.switchOn : ''
-                }`}
+                className={`${styles.switch} ${theme === 'dark' ? styles.switchOn : ''
+                  }`}
               >
                 <div className={styles.knob} />
               </div>
