@@ -1,11 +1,11 @@
 /* ==================== HERO SECTION ==================== */
 .hero {
-  height: 100vh;
+  min-height: 100svh; /* FIX mobile address bar */
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 0 20px;
+  padding: 80px 20px 60px;
   background: var(--bg-color);
 }
 
@@ -31,41 +31,18 @@
   line-height: 1.1;
 }
 
-.heroSubtitle {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-bottom: 30px;
-}
-
-.heroImage {
-  max-width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profileImage {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid var(--primary-color);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-}
-
-.profileImageImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .highlight {
-  background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    120deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+/* ==================== TYPEWRITER ==================== */
 .typewriter {
   margin-bottom: 20px;
   min-height: 30px;
@@ -81,6 +58,7 @@
   width: 3px;
   height: 1.2em;
   background-color: var(--primary-color);
+  margin-left: 2px;
   animation: blink 1s infinite;
 }
 
@@ -93,6 +71,14 @@
   }
 }
 
+/* ==================== SUBTITLE ==================== */
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* ==================== BUTTONS ==================== */
 .heroButtons {
   display: flex;
   gap: 20px;
@@ -101,9 +87,10 @@
   margin-top: 30px;
 }
 
-.primaryBtn, .secondaryBtn {
+.primaryBtn,
+.secondaryBtn {
   padding: 12px 30px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
@@ -112,7 +99,11 @@
 }
 
 .primaryBtn {
-  background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    120deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   color: white;
 }
 
@@ -122,18 +113,50 @@
   border: 2px solid var(--border-color);
 }
 
-.primaryBtn:hover, .secondaryBtn:hover {
+.primaryBtn:hover,
+.secondaryBtn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
+/* ==================== IMAGE ==================== */
+.heroImage {
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImage {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  animation: float 6s ease-in-out infinite;
+}
+
+.profileImageImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* ==================== SCROLL INDICATOR ==================== */
 .scrollIndicator {
   position: absolute;
-  bottom: 30px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   color: var(--text-secondary);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   animation: bounce 2s infinite;
 }
@@ -150,30 +173,63 @@
   }
 }
 
-/* Responsive Design */
+/* ==================== MOBILE RESPONSIVE ==================== */
 @media (max-width: 768px) {
   .heroContainer {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
+    gap: 24px;
   }
-  
+
   .heroContent {
     max-width: 100%;
     text-align: center;
-    margin-bottom: 30px;
   }
-  
-  .heroImage {
-    max-width: 80%;
-    margin-bottom: 30px;
+
+  .heroTitle {
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.2;
   }
-  
-  .profileImage {
-    width: 200px;
-    height: 200px;
+
+  .typewriterText {
+    font-size: 1rem;
   }
-  
+
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
   .heroButtons {
     justify-content: center;
+    gap: 12px;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 0;
+  }
+
+  .heroImage {
+    max-width: 100%;
+  }
+
+  .profileImage {
+    width: 160px;
+    height: 160px;
+  }
+
+  .scrollIndicator {
+    bottom: 16px;
+    font-size: 1.3rem;
+  }
+}
+
+/* ==================== SMALL MOBILE ==================== */
+@media (max-width: 480px) {
+  .scrollIndicator {
+    display: none;
   }
 }
