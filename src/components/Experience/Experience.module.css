@@ -1,251 +1,122 @@
-/* src/components/Experience.module.css */
-
-/* --- Section Header --- */
+/* ==================== EXPERIENCE SECTION ==================== */
 .section {
-  padding: 100px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 100px 20px;
+  background: var(--bg-color);
 }
 
 .sectionHeader {
+  margin-bottom: 50px;
   text-align: center;
-  margin-bottom: 60px;
 }
 
 .sectionHeader h2 {
-  color: var(--text-color);
   font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
 .underline {
-  width: 100px;
+  width: 120px;
   height: 4px;
-  background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   margin: 0 auto;
-}
-
-/* --- Timeline Styles --- */
-.timeline {
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Timeline line */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 100%;
-  background: var(--border-color);
   border-radius: 2px;
 }
 
-/* Timeline item container */
-.timelineItem {
-  position: relative;
-  width: 100%;
-  padding-bottom: 60px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
 }
 
-/* Timeline dot with different colors for each type */
-.timelineDot {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  background: var(--bg-color);
-  border: 4px solid var(--primary-color);
-  border-radius: 50%;
-  z-index: 1;
-  transition: var(--transition);
-}
-
-/* Different colors for experience and certificate dots */
-.timelineDot.experience {
-  border-color: var(--primary-color);
-}
-
-.timelineDot.certificate {
-  border-color: var(--secondary-color);
-}
-
-.timelineItem:hover .timelineDot {
-  transform: translateX(-50%) scale(1.2);
-}
-
-/* Base content card styles */
-.timelineContent {
-  position: relative;
-  width: 45%;
-  padding: 25px 30px;
-  border-radius: 12px;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-}
-
-/* Experience card styles */
-.timelineContent.experience {
+.card {
   background: var(--card-bg);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  position: relative;
 }
 
-.timelineContent.experience:hover {
+.card:hover {
   border-color: var(--primary-color);
-  box-shadow: 0 10px 30px -15px rgba(59, 130, 246, 0.3);
   transform: translateY(-5px);
 }
 
-/* Certificate card styles */
-.timelineContent.certificate {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
-}
-
-.timelineContent.certificate:hover {
-  border-color: var(--secondary-color);
-  box-shadow: 0 10px 30px -15px rgba(139, 92, 246, 0.3);
-  transform: translateY(-5px);
-}
-
-/* Positioning for alternating items */
-.timelineItem:nth-child(odd) .timelineContent {
-  left: 0;
-}
-
-.timelineItem:nth-child(even) .timelineContent {
-  left: 55%;
-}
-
-/* Arrow pointing to the timeline */
-.timelineContent::after {
-  content: "";
+.badge {
   position: absolute;
   top: 20px;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-}
-
-.timelineItem:nth-child(odd) .timelineContent::after {
-  right: -20px;
-  border-left-color: var(--card-bg);
-}
-
-.timelineItem:nth-child(even) .timelineContent::after {
-  left: -20px;
-  border-right-color: var(--card-bg);
-}
-
-/* Special arrow color for certificate cards */
-.timelineItem:nth-child(odd) .timelineContent.certificate::after {
-  border-left-color: rgba(139, 92, 246, 0.1);
-}
-
-.timelineItem:nth-child(even) .timelineContent.certificate::after {
-  border-right-color: rgba(139, 92, 246, 0.1);
-}
-
-/* Badge styles */
-.badge {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
+  right: 20px;
+  padding: 5px 14px;
   font-size: 0.75rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: white;
 }
 
-.experienceBadge {
+.experience {
   background: var(--primary-color);
-  color: white;
 }
 
-.certificateBadge {
+.certificate {
   background: var(--secondary-color);
-  color: white;
 }
 
-/* Content typography */
-.timelineContent h3 {
-  color: var(--text-color);
+.card h3 {
   font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.company {
+  font-weight: 500;
+  color: var(--primary-color);
   margin-bottom: 5px;
 }
 
-.timelineContent h4 {
-  color: var(--primary-color);
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
-
-/* Different color for company name in certificates */
-.timelineContent.certificate h4 {
-  color: var(--secondary-color);
-}
-
-.timelineContent .date {
-  color: var(--text-secondary);
+.date {
   font-size: 0.9rem;
-  display: block;
+  color: var(--text-secondary);
   margin-bottom: 15px;
 }
 
-.timelineContent .description {
+.description {
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-/* Certificate icon */
-.timelineContent.certificate::before {
-  content: "🏆";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1.2rem;
-  opacity: 0.7;
-}
-
-/* Experience icon */
-.timelineContent.experience::before {
-  content: "💼";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1.2rem;
-  opacity: 0.7;
-}
-
-/* --- Responsive Design --- */
+/* Responsive */
 @media (max-width: 768px) {
-  .timeline::before {
-    left: 31px;
+  .grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .timelineDot {
-    left: 31px;
-  }
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: flex-start;
+}
 
-  .timelineContent {
-    width: calc(100% - 70px);
-    left: 70px !important;
-  }
+.columnTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
 
-  .timelineContent::after {
-    display: none;
-  }
-
-  .sectionHeader h2 {
-    font-size: 2rem;
+/* Mobile */
+@media (max-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr;
   }
 }
