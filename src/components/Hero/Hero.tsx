@@ -36,10 +36,11 @@ export default function Hero() {
       <div className={styles.heroContainer}>
         <motion.div
           className={styles.heroContent}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
+
           <motion.h1 className={styles.heroTitle}>
             Hello, I'm <span className={styles.highlight}>Maulana Arianto</span>
           </motion.h1>

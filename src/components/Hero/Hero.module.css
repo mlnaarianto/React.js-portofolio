@@ -1,20 +1,24 @@
 /* ==================== HERO SECTION ==================== */
 .hero {
-  /* FIX 1: jangan svh */
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
 
-  /* FIX 2: padding tetap, tapi jangan bikin overflow */
   padding: 80px 20px 60px;
-
   background: var(--bg-color);
 
-  /* FIX 3: pengaman khusus hero */
+  /* ANTI horizontal scroll */
   overflow-x: hidden;
+}
+
+/* safety net untuk child transform */
+.hero * {
+  max-width: 100%;
 }
 
 /* ==================== CONTAINER ==================== */
@@ -30,7 +34,7 @@
   z-index: 2;
 }
 
-/* ==================== CONTENT (TIDAK DIUBAH) ==================== */
+/* ==================== CONTENT ==================== */
 .heroContent {
   max-width: 50%;
   text-align: left;
@@ -142,7 +146,10 @@
   overflow: hidden;
   border: 4px solid var(--primary-color);
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+
+  /* transform vertical only */
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .profileImageImg {
@@ -159,12 +166,11 @@
 
 /* ==================== SCROLL INDICATOR ==================== */
 .scrollIndicator {
-  /* FIX 4: tetap absolute tapi aman */
   position: absolute;
   bottom: 24px;
   left: 50%;
 
-  /* translate tetap, tapi tidak bikin overflow */
+  /* translate3d = GPU + no overflow */
   transform: translate3d(-50%, 0, 0);
 
   color: var(--text-secondary);
