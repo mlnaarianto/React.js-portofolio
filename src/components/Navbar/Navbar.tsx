@@ -156,8 +156,10 @@ export default function Navbar() {
         {/* HAMBURGER */}
         <button
           ref={hamburgerRef}
-          className={styles.hamburger}
+          className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''
+            }`}
           onClick={() => setMenuOpen((p) => !p)}
+          aria-label="Toggle menu"
         >
           <span />
           <span />

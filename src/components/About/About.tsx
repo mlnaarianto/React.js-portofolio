@@ -60,23 +60,22 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p>
-            I am a student of <strong>Software Engineering Technology</strong> at
-            <strong> Batam State Polytechnic</strong>, starting in 2022, with a
-            high school educational background majoring in <strong>Natural Sciences</strong>.
+            I am a <strong>Software Engineering Technology</strong> student at
+            <strong> Batam State Polytechnic</strong> who enjoys turning ideas into
+            functional and well-designed web applications.
           </p>
 
           <p>
-            I have the ability to work both independently and as part of a team.
-            I am always committed to continuous learning, eager to grow, and
-            never easily satisfied in order to achieve the best possible results.
+            My main focus is <strong>full-stack development</strong>, where I work with
+            both <strong>frontend and backend technologies</strong> to build clean,
+            responsive, and scalable solutions.
           </p>
 
           <p>
-            My main focus is <strong>full-stack development</strong>, including both
-            <strong> frontend and backend technologies</strong>, where I build modern,
-            responsive, user-friendly, and scalable web applications from user interface
-            design to server-side logic and database management.
+            I’m highly motivated to keep learning, explore new tools, and grow through
+            hands-on projects and collaboration with others.
           </p>
+
 
         </motion.div>
 

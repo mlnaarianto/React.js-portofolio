@@ -1,4 +1,4 @@
-/* ===== SECTION ===== */
+/* ==================== SECTION ==================== */
 .section {
   max-width: 1200px;
   margin: 0 auto;
@@ -20,12 +20,17 @@
 
 .underline {
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  width: 80px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   margin: 0 auto;
   border-radius: 2px;
 }
 
-/* ===== SKILLS ===== */
+/* ==================== SKILLS ==================== */
 .skillsContainer {
   max-width: 900px;
   margin: 0 auto;
@@ -37,18 +42,33 @@
   gap: 30px;
 }
 
+/* ==================== SKILL CARD ==================== */
 .skillCard {
+  position: relative;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 25px;
-  backdrop-filter: blur(4px); /* diturunin biar ringan */
-  transition: var(--transition);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
+/* hover effect (clean) */
+.skillCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-color);
+}
+
+/* ==================== HEADER ==================== */
 .skillHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
 }
 
@@ -62,7 +82,7 @@
   color: var(--text-secondary);
 }
 
-/* ===== BAR ===== */
+/* ==================== BAR ==================== */
 .skillBarContainer {
   height: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -73,11 +93,17 @@
 .skillBar {
   height: 100%;
   border-radius: 4px;
+  transform-origin: left;
   will-change: transform;
-  transform: scaleX(0);
+  transition: filter 0.3s ease;
 }
 
-/* ===== RESPONSIVE ===== */
+/* bar reacts on hover */
+.skillCard:hover .skillBar {
+  filter: brightness(1.15);
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
   .skillsGrid {
     grid-template-columns: 1fr;

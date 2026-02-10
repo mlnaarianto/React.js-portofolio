@@ -90,7 +90,7 @@ export default function Footer() {
 
             <div className={styles.contactItem}>
               <FaMapMarkerAlt />
-              <span>Batam City, Indonesia</span>
+              <span>Batam City, Riau Island Province, Indonesian</span>
             </div>
           </div>
         </motion.div>

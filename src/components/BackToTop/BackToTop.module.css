@@ -1,0 +1,54 @@
+.button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  /* SAMA KAYAK HERO PRIMARY BUTTON */
+  background: linear-gradient(
+    120deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ✨ HOVER FEEL KAYAK SUBMIT BUTTON */
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.45);
+}
+
+/* klik feel */
+.button:active {
+  transform: translateY(-1px) scale(0.96);
+}

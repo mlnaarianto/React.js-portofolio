@@ -7,7 +7,7 @@ const skills = [
   { name: 'Laravel', level: 85, color: '#FF6B6B' },
   { name: 'CodeIgniter', level: 85, color: '#F4A261' },
   { name: 'Flutter', level: 75, color: '#4D96FF' },
-  { name: 'IoT', level: 70, color: '#43AA8B' },
+  { name: 'IoT', level: 65, color: '#43AA8B' },
   { name: 'React', level: 75, color: '#61C0BF' },
   { name: 'MySQL', level: 85, color: '#577590' }
 ]

@@ -129,13 +129,29 @@
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  padding: 4px;
 }
 
 .hamburger span {
   width: 24px;
   height: 2px;
   background: var(--text-color);
+  transition: 0.3s ease;
 }
+
+/* 🔥 STATE: OPEN (JADI X) */
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
@@ -176,6 +192,7 @@
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

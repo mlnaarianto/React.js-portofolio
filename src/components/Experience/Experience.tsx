@@ -40,17 +40,7 @@ const data: ExperienceItem[] = [
       "Developed mobile applications using Flutter, implemented responsive layouts, integrated REST APIs, and optimized application performance for better user experience.",
     type: "experience",
   },
-  {
-    title: "Project Based Learning Certificate",
-    company: "Politeknik Negeri Batam - Project Based Learning",
-    companyUrl: "https://polibatam.ac.id",
-    certificateUrl:
-      "https://drive.google.com/file/d/12-xD34KO8BkLFNlgOvjeIDo8H4IusjyR/view?usp=drive_link",
-    date: "Aug 2025 - Jan 2026",
-    description:
-      'Completed a Project Based Learning program with the project titled "Parkwell: Data Driven Smart Parking System Powered by IoT and Big Data Analytics". Responsible for developing the web dashboard using Laravel, integrating IoT sensor data, and implementing real-time monitoring and analytics features.',
-    type: "certificate",
-  },
+
   {
     title: "Hack4ID Kepri Participant Certificate",
     company: "Politeknik Negeri Batam x Lintasarta",
@@ -62,6 +52,17 @@ const data: ExperienceItem[] = [
       "Participated in HACK4ID Kepri, a collaborative hackathon organized by Politeknik Negeri Batam and Lintasarta, focusing on digital innovation, problem solving, and rapid web application prototyping.",
     type: "certificate",
   },
+  {
+    title: "Project Based Learning Certificate",
+    company: "Politeknik Negeri Batam - Project Based Learning",
+    companyUrl: "https://polibatam.ac.id",
+    certificateUrl:
+      "https://drive.google.com/file/d/12-xD34KO8BkLFNlgOvjeIDo8H4IusjyR/view?usp=drive_link",
+    date: "Aug 2025 - Jan 2026",
+    description:
+      'Completed a Project Based Learning program with the project titled "Parkwell: Data Driven Smart Parking System Powered by IoT and Big Data Analytics". Responsible for developing the web dashboard using Laravel, integrating IoT sensor data, and implementing real-time monitoring and analytics features.',
+    type: "certificate",
+  }
 ];
 
 export default function Experience() {

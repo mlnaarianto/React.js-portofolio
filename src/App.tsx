@@ -10,6 +10,8 @@ import Projects from './components/Projects/Projects'
 import Blog from './components/Blog/Blog'
 import BlogDetail from './components/Blog/BlogDetail'
 import Footer from './components/Footer/Footer'
+import BackToTop from './components/BackToTop/BackToTop'
+
 
 export default function App() {
   const location = useLocation()
@@ -63,29 +65,33 @@ export default function App() {
     return () => clearTimeout(timer)
   }, [location.pathname])
 
-  return (
-    <>
-      <Navbar />
+ return (
+  <>
+    <Navbar />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              <About />
-              <Skills />
-              <Experience />
-              <Projects />
-              <Blog />
-            </>
-          }
-        />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Hero />
+            <About />
+            <Skills />
+            <Experience />
+            <Projects />
+            <Blog />
+          </>
+        }
+      />
 
-        <Route path="/blog/:slug" element={<BlogDetail />} />
-      </Routes>
+      <Route path="/blog/:slug" element={<BlogDetail />} />
+    </Routes>
 
-      <Footer />
-    </>
-  )
+    <Footer />
+
+    {/* ⬆️ BACK TO TOP DI SINI */}
+    <BackToTop />
+  </>
+)
+
 }
