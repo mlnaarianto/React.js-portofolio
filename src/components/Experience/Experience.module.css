@@ -6,6 +6,7 @@
   background: var(--bg-color);
 }
 
+/* ==================== HEADER ==================== */
 .sectionHeader {
   margin-bottom: 50px;
   text-align: center;
@@ -30,12 +31,29 @@
   border-radius: 2px;
 }
 
+/* ==================== COLUMNS ==================== */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.columnTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+/* ==================== GRID ==================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
 }
 
+/* ==================== CARD ==================== */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -51,6 +69,13 @@
   transform: translateY(-5px);
 }
 
+.card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* ==================== BADGE ==================== */
 .badge {
   position: absolute;
   top: 20px;
@@ -70,16 +95,22 @@
   background: var(--secondary-color);
 }
 
-.card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  color: var(--text-color);
-}
-
+/* ==================== TEXT ==================== */
 .company {
   font-weight: 500;
   color: var(--primary-color);
   margin-bottom: 5px;
+}
+
+.companyLink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.companyLink:hover {
+  text-decoration: underline;
+  opacity: 0.85;
 }
 
 .date {
@@ -93,46 +124,7 @@
   line-height: 1.6;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: flex-start;
-}
-
-.columnTitle {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: var(--text-color);
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .columns {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.companyLink {
-  color: #3b82f6;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.companyLink:hover {
-  text-decoration: underline;
-  opacity: 0.85;
-}
-
+/* ==================== CERTIFICATE BUTTON ==================== */
 .certificateBtn {
   display: inline-block;
   margin-top: 10px;
@@ -147,4 +139,83 @@
 
 .certificateBtn:hover {
   opacity: 0.85;
+}
+
+/* ========================================================= */
+/* ==================== RESPONSIVE ========================= */
+/* ========================================================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .columns {
+    gap: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 70px 16px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .columnTitle {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  /* ===== BADGE FIX MOBILE ===== */
+  .badge {
+    position: static;        /* hilangkan absolute */
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 0.7rem;
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .company {
+    font-size: 0.95rem;
+  }
+
+  .date {
+    font-size: 0.85rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .certificateBtn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .underline {
+    width: 80px;
+  }
 }
