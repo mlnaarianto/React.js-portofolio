@@ -6,7 +6,7 @@ type ExperienceItem = {
   title: string;
   company: string;
   companyUrl?: string;
-  certificateUrl?: string; // khusus certificate
+  certificateUrl?: string;
   date: string;
   description: string;
   type: "experience" | "certificate";
@@ -51,8 +51,6 @@ const data: ExperienceItem[] = [
       'Completed a Project Based Learning program with the project titled "Parkwell: Data Driven Smart Parking System Powered by IoT and Big Data Analytics". Responsible for developing the web dashboard using Laravel, integrating IoT sensor data, and implementing real-time monitoring and analytics features.',
     type: "certificate",
   },
-
-
   {
     title: "Hack4ID Kepri Participant Certificate",
     company: "Politeknik Negeri Batam x Lintasarta",
@@ -84,18 +82,38 @@ export default function Experience() {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
     >
+      {/* HEADER */}
       <div className={styles.sectionHeader}>
-        <h2>Experience & Certificates</h2>
-        <div className={styles.underline} />
+        <motion.h2
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Experience & Certificates
+        </motion.h2>
+
+        <motion.div
+          className={styles.underline}
+          initial={{ width: 0 }}
+          animate={inView ? { width: "80px" } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        />
       </div>
 
       <div className={styles.columns}>
-        {/* EXPERIENCE */}
+        {/* EXPERIENCE COLUMN */}
         <div>
           <h3 className={styles.columnTitle}>Experience</h3>
           <div className={styles.grid}>
             {experiences.map((item, index) => (
-              <div key={index} className={styles.card}>
+              <motion.div
+                key={index}
+                className={styles.card}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                whileHover={{ y: -8 }}
+              >
                 <span className={`${styles.badge} ${styles.experience}`}>
                   Experience
                 </span>
@@ -119,17 +137,27 @@ export default function Experience() {
 
                 <p className={styles.date}>{item.date}</p>
                 <p className={styles.description}>{item.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* CERTIFICATES */}
+        {/* CERTIFICATE COLUMN */}
         <div>
           <h3 className={styles.columnTitle}>Certificates</h3>
           <div className={styles.grid}>
             {certificates.map((item, index) => (
-              <div key={index} className={styles.card}>
+              <motion.div
+                key={index}
+                className={styles.card}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1 * index + 0.2,
+                }}
+                whileHover={{ y: -8 }}
+              >
                 <span className={`${styles.badge} ${styles.certificate}`}>
                   Certificate
                 </span>
@@ -164,7 +192,7 @@ export default function Experience() {
                     View Certificate
                   </a>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
