@@ -1,4 +1,4 @@
-/* ==================== SECTION STYLES ==================== */
+/* ===== SECTION ===== */
 .section {
   max-width: 1200px;
   margin: 0 auto;
@@ -25,7 +25,7 @@
   border-radius: 2px;
 }
 
-/* ==================== SKILLS SECTION ==================== */
+/* ===== SKILLS ===== */
 .skillsContainer {
   max-width: 900px;
   margin: 0 auto;
@@ -42,7 +42,7 @@
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 25px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px); /* diturunin biar ringan */
   transition: var(--transition);
 }
 
@@ -57,6 +57,12 @@
   color: var(--text-color);
 }
 
+.skillHeader span {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ===== BAR ===== */
 .skillBarContainer {
   height: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -67,11 +73,17 @@
 .skillBar {
   height: 100%;
   border-radius: 4px;
+  will-change: transform;
+  transform: scaleX(0);
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .skillsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 70px 16px;
   }
 }
