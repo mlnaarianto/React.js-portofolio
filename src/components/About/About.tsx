@@ -12,7 +12,7 @@ export default function About() {
       const expTimer = setTimeout(() => {
         const interval = setInterval(() => {
           setExperience(prev => {
-            if (prev < 5) return prev + 1
+            if (prev < 4) return prev + 1
             clearInterval(interval)
             return prev
           })
@@ -72,9 +72,12 @@ export default function About() {
           </p>
 
           <p>
-            My main focus is frontend development, particularly building modern,
-            responsive, and user-friendly web applications.
+            My main focus is <strong>full-stack development</strong>, including both
+            <strong> frontend and backend technologies</strong>, where I build modern,
+            responsive, user-friendly, and scalable web applications from user interface
+            design to server-side logic and database management.
           </p>
+
         </motion.div>
 
         <motion.div
@@ -89,7 +92,7 @@ export default function About() {
           </div>
 
           <div className={styles.statCard}>
-            <h3>20+</h3>
+            <h3>12+</h3>
             <p>Projects Completed</p>
           </div>
 

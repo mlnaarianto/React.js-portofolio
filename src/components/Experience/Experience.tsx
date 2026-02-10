@@ -5,6 +5,8 @@ import styles from "./Experience.module.css";
 type ExperienceItem = {
   title: string;
   company: string;
+  companyUrl?: string;
+  certificateUrl?: string; // khusus certificate
   date: string;
   description: string;
   type: "experience" | "certificate";
@@ -12,35 +14,54 @@ type ExperienceItem = {
 
 const data: ExperienceItem[] = [
   {
-    title: "Frontend Developer Intern",
-    company: "PT Teknologi Nusantara",
-    date: "Jan 2024 - Jun 2024",
+    title: "Fullstack Developer Intern",
+    company: "Politeknik Negeri Batam - Transformasi Digital",
+    companyUrl: "https://polibatam.ac.id",
+    date: "Sep 2025 - May 2026",
     description:
-      "Mengembangkan UI menggunakan React dan Tailwind, integrasi REST API, serta meningkatkan performa aplikasi.",
+      "Develop and maintain web applications using Laravel, integrate REST APIs for backend data communication, and perform performance optimizations and bug fixes to enhance the campus experience.",
     type: "experience",
   },
   {
-    title: "Web Developer",
-    company: "Freelance Project",
-    date: "2023 - Sekarang",
+    title: "Web Developer (PBL)",
+    company: "Politeknik Negeri Batam - Project Based Learning",
+    companyUrl: "https://polibatam.ac.id",
+    date: "Aug 2022 - Jun 2026",
     description:
-      "Membuat website portfolio dan company profile menggunakan React dan Laravel.",
+      "Developed Project Based Learning web platforms using Laravel, implemented responsive UI design, and integrated REST APIs for dynamic content management.",
     type: "experience",
   },
   {
-    title: "React Developer Certificate",
-    company: "Dicoding Indonesia",
-    date: "2023",
+    title: "Mobile Developer (PBL)",
+    company: "Politeknik Negeri Batam - Project Based Learning",
+    companyUrl: "https://polibatam.ac.id",
+    date: "Aug 2023 - Jan 2024",
     description:
-      "Sertifikasi resmi React Developer mencakup component, hooks, dan state management.",
+      "Developed mobile applications using Flutter, implemented responsive layouts, integrated REST APIs, and optimized application performance for better user experience.",
+    type: "experience",
+  },
+  {
+    title: "Project Based Learning Certificate",
+    company: "Politeknik Negeri Batam - Project Based Learning",
+    companyUrl: "https://polibatam.ac.id",
+    certificateUrl:
+      "https://drive.google.com/file/d/12-xD34KO8BkLFNlgOvjeIDo8H4IusjyR/view?usp=drive_link",
+    date: "Aug 2025 - Jan 2026",
+    description:
+      'Completed a Project Based Learning program with the project titled "Parkwell: Data Driven Smart Parking System Powered by IoT and Big Data Analytics". Responsible for developing the web dashboard using Laravel, integrating IoT sensor data, and implementing real-time monitoring and analytics features.',
     type: "certificate",
   },
+
+
   {
-    title: "Fullstack Web Development",
-    company: "Binar Academy",
-    date: "2022",
+    title: "Hack4ID Kepri Participant Certificate",
+    company: "Politeknik Negeri Batam x Lintasarta",
+    companyUrl: "https://www.lintasarta.net",
+    certificateUrl:
+      "https://drive.google.com/file/d/1fycC8F20TQuQiVgTHknHBeM_DACITmOx/view?usp=drive_link",
+    date: "Aug 2023",
     description:
-      "Pelatihan intensif fullstack menggunakan Laravel, MySQL, dan React.",
+      "Participated in HACK4ID Kepri, a collaborative hackathon organized by Politeknik Negeri Batam and Lintasarta, focusing on digital innovation, problem solving, and rapid web application prototyping.",
     type: "certificate",
   },
 ];
@@ -51,8 +72,8 @@ export default function Experience() {
     threshold: 0.15,
   });
 
-  const experiences = data.filter(item => item.type === "experience");
-  const certificates = data.filter(item => item.type === "certificate");
+  const experiences = data.filter((item) => item.type === "experience");
+  const certificates = data.filter((item) => item.type === "certificate");
 
   return (
     <motion.section
@@ -63,90 +84,87 @@ export default function Experience() {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
     >
-      {/* ===== HEADER ===== */}
       <div className={styles.sectionHeader}>
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          Experience & Certificates
-        </motion.h2>
-
-        <motion.div
-          className={styles.underline}
-          initial={{ width: 0 }}
-          animate={inView ? { width: "120px" } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        />
+        <h2>Experience & Certificates</h2>
+        <div className={styles.underline} />
       </div>
 
-      {/* ===== CONTENT ===== */}
       <div className={styles.columns}>
-        {/* LEFT - EXPERIENCE */}
+        {/* EXPERIENCE */}
         <div>
-          <motion.h3
-            className={styles.columnTitle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Experience
-          </motion.h3>
-
+          <h3 className={styles.columnTitle}>Experience</h3>
           <div className={styles.grid}>
             {experiences.map((item, index) => (
-              <motion.div
-                key={index}
-                className={styles.card}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                whileHover={{ y: -6 }}
-              >
+              <div key={index} className={styles.card}>
                 <span className={`${styles.badge} ${styles.experience}`}>
                   Experience
                 </span>
 
                 <h3>{item.title}</h3>
-                <p className={styles.company}>{item.company}</p>
+
+                <p className={styles.company}>
+                  {item.companyUrl ? (
+                    <a
+                      href={item.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                    >
+                      {item.company}
+                    </a>
+                  ) : (
+                    item.company
+                  )}
+                </p>
+
                 <p className={styles.date}>{item.date}</p>
                 <p className={styles.description}>{item.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* RIGHT - CERTIFICATE */}
+        {/* CERTIFICATES */}
         <div>
-          <motion.h3
-            className={styles.columnTitle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.35 }}
-          >
-            Certificates
-          </motion.h3>
-
+          <h3 className={styles.columnTitle}>Certificates</h3>
           <div className={styles.grid}>
             {certificates.map((item, index) => (
-              <motion.div
-                key={index}
-                className={styles.card}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.45 + index * 0.1 }}
-                whileHover={{ y: -6 }}
-              >
+              <div key={index} className={styles.card}>
                 <span className={`${styles.badge} ${styles.certificate}`}>
                   Certificate
                 </span>
 
                 <h3>{item.title}</h3>
-                <p className={styles.company}>{item.company}</p>
+
+                <p className={styles.company}>
+                  {item.companyUrl ? (
+                    <a
+                      href={item.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                    >
+                      {item.company}
+                    </a>
+                  ) : (
+                    item.company
+                  )}
+                </p>
+
                 <p className={styles.date}>{item.date}</p>
                 <p className={styles.description}>{item.description}</p>
-              </motion.div>
+
+                {item.certificateUrl && (
+                  <a
+                    href={item.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.certificateBtn}
+                  >
+                    View Certificate
+                  </a>
+                )}
+              </div>
             ))}
           </div>
         </div>

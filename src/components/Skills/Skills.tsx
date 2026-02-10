@@ -4,15 +4,16 @@ import { useState, useEffect } from 'react'
 import styles from './Skills.module.css'
 
 const skills = [
-  { name: 'React', level: 90, color: '#61DAFB' },
-  { name: 'TypeScript', level: 85, color: '#3178C6' },
-  { name: 'Laravel', level: 75, color: '#FF2D20' },
-  { name: 'Tailwind', level: 88, color: '#06B6D4' },
-  { name: 'MySQL', level: 70, color: '#4479A1' },
-  { name: 'Next.js', level: 80, color: '#000000' },
-  { name: 'Node.js', level: 65, color: '#339933' },
-  { name: 'Figma', level: 75, color: '#F24E1E' }
+  { name: 'PHP Native', level: 90, color: '#6C63FF' },     // ungu lembut
+  { name: 'Laravel', level: 85, color: '#FF6B6B' },        // merah soft
+  { name: 'CodeIgniter', level: 85, color: '#F4A261' },     // oranye pastel
+  { name: 'Flutter', level: 75, color: '#4D96FF' },         // biru cerah lembut
+  { name: 'IoT', level: 70, color: '#43AA8B' },             // hijau teal soft
+  { name: 'React', level: 75, color: '#61C0BF' },           // cyan lembut
+  { name: 'MySQL', level: 85, color: '#577590' }            // biru abu elegan
 ]
+
+
 
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })

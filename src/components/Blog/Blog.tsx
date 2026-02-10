@@ -8,64 +8,66 @@ import styles from './Blog.module.css'
 const blogPosts = [
   {
     id: 1,
-    title: 'Getting Started with React 19 and TypeScript',
-    slug: 'getting-started-react-19-typescript',
-    excerpt: 'Explore the new features in React 19 and how to set up a project with TypeScript for type safety and better developer experience.',
-    date: '2023-11-15',
-    category: 'React',
-    image: 'https://picsum.photos/seed/react19/600/400.jpg',
-    readTime: '5 min read'
+    title: 'Getting Started with Native PHP for Beginners',
+    slug: 'getting-started-native-php',
+    excerpt: 'My first experience learning native PHP, understanding basic syntax, CRUD operations, and how PHP connects with MySQL in simple web applications.',
+    date: '2026-02-10',
+    category: 'Backend',
+    image: 'https://picsum.photos/seed/php/600/400.jpg',
+    readTime: '4 min read'
   },
   {
     id: 2,
-    title: 'Building Responsive Layouts with CSS Grid',
-    slug: 'building-responsive-layouts-css-grid',
-    excerpt: 'Learn how to create complex, responsive layouts using CSS Grid with practical examples and best practices.',
-    date: '2023-10-28',
-    category: 'CSS',
-    image: 'https://picsum.photos/seed/cssgrid/600/400.jpg',
-    readTime: '7 min read'
-  },
-  {
-    id: 3,
-    title: 'State Management in React: Context API vs Redux',
-    slug: 'state-management-react-context-vs-redux',
-    excerpt: 'Compare different state management solutions in React and understand when to use Context API versus Redux.',
-    date: '2023-10-15',
-    category: 'React',
-    image: 'https://picsum.photos/seed/statemanage/600/400.jpg',
-    readTime: '10 min read'
-  },
-  {
-    id: 4,
-    title: 'Optimizing Web Performance with Modern Techniques',
-    slug: 'optimizing-web-performance-modern-techniques',
-    excerpt: 'Discover techniques to improve your website performance, including code splitting, lazy loading, and image optimization.',
-    date: '2023-09-30',
-    category: 'Performance',
-    image: 'https://picsum.photos/seed/performance/600/400.jpg',
-    readTime: '8 min read'
-  },
-  {
-    id: 5,
-    title: 'Introduction to Next.js 13 and App Router',
-    slug: 'introduction-nextjs-13-app-router',
-    excerpt: 'Get familiar with the new App Router in Next.js 13 and how it changes the way we build React applications.',
-    date: '2023-09-15',
-    category: 'Next.js',
-    image: 'https://picsum.photos/seed/nextjs13/600/400.jpg',
+    title: 'Understanding RESTful API in Web Development',
+    slug: 'understanding-restful-api',
+    excerpt: 'An introduction to RESTful API concepts, HTTP methods, and how frontend and backend communicate using JSON data.',
+    date: '2026-02-10',
+    category: 'Backend',
+    image: 'https://picsum.photos/seed/restapi/600/400.jpg',
     readTime: '6 min read'
   },
   {
-    id: 6,
-    title: 'Building Accessible Web Applications',
-    slug: 'building-accessible-web-applications',
-    excerpt: 'Learn the principles of web accessibility and how to implement them in your React applications for inclusive design.',
-    date: '2023-08-28',
-    category: 'Accessibility',
-    image: 'https://picsum.photos/seed/a11y/600/400.jpg',
+    id: 3,
+    title: 'Building Dynamic Websites with Laravel Blade',
+    slug: 'building-dynamic-websites-laravel-blade',
+    excerpt: 'Learn how Laravel Blade templating engine helps build clean, reusable, and dynamic web interfaces efficiently.',
+    date: '2026-02-10',
+    category: 'Laravel',
+    image: 'https://picsum.photos/seed/laravelblade/600/400.jpg',
+    readTime: '8 min read'
+  },
+  {
+    id: 4,
+    title: 'Implementing OAuth Social Login (Google, Meta, X, Discord)',
+    slug: 'implementing-oauth-social-login',
+    excerpt: 'Learn how OAuth works and how to integrate social login services like Google, Meta, X, and Discord into your web application.',
+    date: '2026-02-10',
+    category: 'Authentication',
+    image: 'https://picsum.photos/seed/oauth/600/400.jpg',
     readTime: '9 min read'
+  },
+  {
+    id: 5,
+    title: 'Generating Anime Characters using DCGAN with TensorFlow & Keras',
+    slug: 'anime-generator-dcgan-tensorflow-keras',
+    excerpt: 'Learn how I built an anime face generator using Deep Convolutional GAN (DCGAN) with TensorFlow and Keras, from dataset preparation to model training.',
+    date: '2026-02-10',
+    category: 'AI / Machine Learning',
+    image: 'https://picsum.photos/seed/animegan/600/400.jpg',
+    readTime: '12 min read'
+  },
+
+  {
+    id: 6,
+    title: 'Getting Started with CodeIgniter 4 for Web Development',
+    slug: 'getting-started-codeigniter-4',
+    excerpt: 'A beginner-friendly introduction to CodeIgniter 4, covering MVC structure, routing, controllers, and simple CRUD implementation.',
+    date: '2026-02-10',
+    category: 'PHP',
+    image: 'https://picsum.photos/seed/codeigniter4/600/400.jpg',
+    readTime: '8 min read'
   }
+
 ]
 
 export default function Blog() {
@@ -125,9 +127,8 @@ export default function Blog() {
         {categories.map(category => (
           <motion.button
             key={category}
-            className={`${styles.filterBtn} ${
-              filter === category ? styles.active : ''
-            }`}
+            className={`${styles.filterBtn} ${filter === category ? styles.active : ''
+              }`}
             onClick={() => setFilter(category)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

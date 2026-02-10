@@ -120,3 +120,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+.companyLink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.companyLink:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.certificateBtn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #22c55e;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.certificateBtn:hover {
+  opacity: 0.85;
+}

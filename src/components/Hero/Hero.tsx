@@ -6,7 +6,7 @@ import styles from './Hero.module.css'
 
 export default function Hero() {
   const [text, setText] = useState('')
-  const fullText = "Frontend Developer · React 19 · TypeScript"
+  const fullText = "Full Stack Developer Enthusiast "
 
   const [index, setIndex] = useState(0)
 

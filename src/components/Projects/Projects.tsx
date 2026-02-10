@@ -5,47 +5,72 @@ import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
 import styles from './Projects.module.css'
 
 const projects = [
+
   {
-    title: 'Sistem Tracking Bus Trans Batam',
-    description: 'Aplikasi pelacakan real-time untuk armada bus Trans Batam dengan integrasi GPS dan peta interaktif.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-    image: 'https://picsum.photos/seed/bus/600/400.jpg',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    title: 'Inventory Borrowing Website (PHP Native)',
+    description: 'A web-based inventory borrowing management system built using native PHP and MySQL. Features include item management, borrowing and returning records, admin dashboard, and user authentication.',
+    tags: ['PHP', 'MySQL'],
+    image: 'https://picsum.photos/seed/borrow/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/inventaris-barang',
+    demo: ''
+  },
+
+  {
+    title: 'Room Practice Website',
+    description: 'A room practice management website built with Laravel. Features include room scheduling, booking system, admin dashboard, and user authentication.',
+    tags: ['PHP', 'Laravel', 'MySQL'],
+    image: 'https://picsum.photos/seed/room/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/Room-Practice',
+    demo: ''
   },
   {
-    title: 'AI Detector Plagiarisme',
-    description: 'Sistem berbasis AI untuk mendeteksi plagiarisme dalam dokumen akademis dengan tingkat akurasi tinggi.',
-    tags: ['Python', 'TensorFlow', 'React', 'Flask'],
-    image: 'https://picsum.photos/seed/plagiarism/600/400.jpg',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    title: 'IoT Printer Server with RFID',
+    description: 'An IoT-based printer server deployment system built on ARM architecture with RFID card authentication. This project enables centralized printer management, secure access control, and real-time monitoring.',
+    tags: ['IoT', 'Laravel', 'MySQL'],
+    image: 'https://picsum.photos/seed/iot/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/Printer-server-with-RFID-Card-IoT',
+    demo: ''
   },
   {
-    title: 'Dashboard GPS Monitoring',
-    description: 'Dashboard monitoring untuk melacak kendaraan perusahaan dengan visualisasi data real-time.',
-    tags: ['React', 'TypeScript', 'Laravel', 'MySQL'],
-    image: 'https://picsum.photos/seed/dashboard/600/400.jpg',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    title: 'Online Store Application (CodeIgniter 4)',
+    description: 'An online store web application built using PHP and the CodeIgniter 4 framework. Features include product management, shopping cart, user authentication, and order processing.',
+    tags: ['PHP', 'CodeIgniter', 'MySQL'],
+    image: 'https://picsum.photos/seed/company/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/Aplication-Store-with-code-igniter-4',
+    demo: ''
+  },
+
+  {
+    title: 'Personal Portfolio Website',
+    description: 'A modern and responsive personal portfolio website built using React, TypeScript, and Vite. Integrated with Framer Motion for smooth animations and ESLint for code quality, featuring fast development with HMR and a clean UI design.',
+    tags: ['React', 'TypeScript', 'Vite', 'Framer Motion'],
+    image: 'https://picsum.photos/seed/portfolio/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/React.js-portofolio',
+    demo: ''
   },
   {
-    title: 'E-Commerce Platform',
-    description: 'Platform e-commerce lengkap dengan sistem pembayaran terintegrasi dan manajemen inventaris.',
-    tags: ['Next.js', 'Stripe', 'PostgreSQL', 'Tailwind'],
-    image: 'https://picsum.photos/seed/ecommerce/600/400.jpg',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    title: 'SITS Polibatam',
+    description: 'A training and certification management web application for Polibatam built using Laravel. The system integrates REST API services for data communication, enabling efficient participant management, scheduling, and certification tracking.',
+    tags: ['PHP', 'Laravel', 'MySQL', 'REST API'],
+    image: 'https://picsum.photos/seed/picsum/600/400.jpg',
+    github: 'https://github.com/mlnaarianto/pelatihan',
+    demo: ''
   }
+
 ]
 
 export default function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const [filter, setFilter] = useState('all')
-  
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase())))
+
+  const filteredProjects =
+    filter === 'all'
+      ? projects
+      : projects.filter(project =>
+        project.tags.some(tag =>
+          tag.toLowerCase().includes(filter.toLowerCase())
+        )
+      )
 
   return (
     <motion.section
@@ -57,29 +82,30 @@ export default function Projects() {
       transition={{ duration: 0.6 }}
     >
       <div className={styles.sectionHeader}>
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           Projects
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           className={styles.underline}
           initial={{ width: 0 }}
           animate={inView ? { width: '80px' } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         />
       </div>
-      
-      <motion.div 
+
+      {/* FILTER */}
+      <motion.div
         className={styles.filterButtons}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
-        {['all', 'react', 'node', 'python'].map((f) => (
+        {['all', 'PHP', 'laravel', 'react', 'iot', 'codeigniter'].map(f => (
           <motion.button
             key={f}
             className={`${styles.filterBtn} ${filter === f ? styles.active : ''}`}
@@ -91,7 +117,7 @@ export default function Projects() {
           </motion.button>
         ))}
       </motion.div>
-      
+
       <div className={styles.projectsGrid}>
         {filteredProjects.map((project, index) => (
           <motion.div
@@ -106,34 +132,24 @@ export default function Projects() {
               <img src={project.image} alt={project.title} />
               <div className={styles.projectOverlay}>
                 <div className={styles.projectLinks}>
-                  <motion.a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
                     <FaGithub />
-                  </motion.a>
-                  <motion.a 
-                    href={project.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <FaExternalLinkAlt />
-                  </motion.a>
+                  </a>
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                      <FaExternalLinkAlt />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
-            
+
             <div className={styles.projectContent}>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              
+
               <div className={styles.projectTags}>
-                {project.tags.map((tag) => (
+                {project.tags.map(tag => (
                   <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
               </div>
